@@ -1,0 +1,12 @@
+<svg width="212" height="40" viewBox="0 0 212 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="power4iq-gradient" x1="0" y1="0" x2="212" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00B8FF"/>
+      <stop offset="0.55" stop-color="#0E6EFF"/>
+      <stop offset="1" stop-color="#0033FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="38" height="38" rx="12" stroke="url(#power4iq-gradient)" stroke-width="2"/>
+  <path d="M15 28L23 18H18.5L25 10L23 16H29L21 28H25.5L19 34L21 28H15Z" fill="url(#power4iq-gradient)"/>
+  <text x="52" y="27" fill="#F8FAFC" font-size="22" font-family="'Segoe UI', 'Arial', sans-serif" font-weight="700" letter-spacing="0.4">Power4IQ</text>
+</svg>
