@@ -2044,7 +2044,7 @@ button { font: inherit; }
 
   /* Video: reencuadra hacia el tercio superior para mostrar la acción en portrait */
   .hero-video {
-    object-position: right 30%;
+    object-position: 75% 30%;
     filter: saturate(1.12) contrast(1.05) brightness(1.08);
   }
 
