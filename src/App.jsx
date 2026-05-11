@@ -1,13 +1,16 @@
+import { lazy, Suspense } from 'react'
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import BrandsCarousel from './components/BrandsCarousel'
-import TrustPillarsSection from './components/TrustPillarsSection'
-import PortafolioSection from './components/PortafolioSection'
-import PlatformConsoleSection from './components/PlatformConsoleSection'
-import FAQSection from './components/FAQSection'
-import FinalCTASection from './components/FinalCTASection'
-import Footer from './components/Footer'
-import WhatsAppFAB from './components/WhatsAppFAB'
+import CookieBanner from './components/CookieBanner'
+
+const TrustPillarsSection  = lazy(() => import('./components/TrustPillarsSection'))
+const PortafolioSection    = lazy(() => import('./components/PortafolioSection'))
+const PlatformConsoleSection = lazy(() => import('./components/PlatformConsoleSection'))
+const FAQSection           = lazy(() => import('./components/FAQSection'))
+const FinalCTASection      = lazy(() => import('./components/FinalCTASection'))
+const Footer               = lazy(() => import('./components/Footer'))
+const WhatsAppFAB          = lazy(() => import('./components/WhatsAppFAB'))
 
 function App() {
   const showOverlay =
@@ -19,16 +22,21 @@ function App() {
       <main>
         <HeroSection />
         <BrandsCarousel />
-        <TrustPillarsSection />
-        <PortafolioSection />
-        <PlatformConsoleSection />
-        <FAQSection />
-        <FinalCTASection />
+        <Suspense>
+          <TrustPillarsSection />
+          <PortafolioSection />
+          <PlatformConsoleSection />
+          <FAQSection />
+          <FinalCTASection />
+        </Suspense>
       </main>
-      <Footer />
-      <WhatsAppFAB />
+      <Suspense>
+        <Footer />
+        <WhatsAppFAB />
+      </Suspense>
 
       {showOverlay ? <div className="design-overlay" /> : null}
+      <CookieBanner />
     </div>
   )
 }

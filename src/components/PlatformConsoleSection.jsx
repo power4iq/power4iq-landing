@@ -96,6 +96,9 @@ function PlatformConsoleSection() {
                 src={appPlatformImg}
                 alt="Power4IQ — dashboard de gestión de carga y app móvil"
                 className="platform-img"
+                width={1672}
+                height={941}
+                loading="lazy"
                 draggable={false}
               />
             </div>

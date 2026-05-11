@@ -41,17 +41,28 @@ const trustItems = [
 function FinalCTASection() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', type: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`Contacto Power4IQ — ${form.type || 'Consulta'}`)
-    const body = encodeURIComponent(
-      `Nombre: ${form.name}\nEmail: ${form.email}\nTeléfono: ${form.phone}\nTipo de proyecto: ${form.type}\n\nMensaje:\n${form.message}`
-    )
-    window.location.href = `mailto:hola@power4iq.com?subject=${subject}&body=${body}`
-    setSent(true)
+    setLoading(true)
+    setError('')
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+      if (!res.ok) throw new Error()
+      setSent(true)
+    } catch {
+      setError('No se pudo enviar. Escríbenos a hola@power4iq.com')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -70,7 +81,7 @@ function FinalCTASection() {
         >
           <span className="eyebrow">Contacto</span>
 
-          <img src={logo} alt="Power4IQ" className="contact-logo" />
+          <img src={logo} alt="Power4IQ" className="contact-logo" width={200} height={64} loading="lazy" />
 
           <h2 className="contact-headline">
             Hablemos de<br />
@@ -197,10 +208,12 @@ function FinalCTASection() {
                   />
                 </div>
 
-                <button type="submit" className="btn btn-primary contact-submit">
-                  Enviar solicitud
-                  <Send size={15} />
+                <button type="submit" className="btn btn-primary contact-submit" disabled={loading}>
+                  {loading ? 'Enviando…' : 'Enviar solicitud'}
+                  {!loading && <Send size={15} />}
                 </button>
+
+                {error && <p className="contact-form-error">{error}</p>}
 
                 <p className="contact-form-note">
                   También puedes escribirnos directo a{' '}

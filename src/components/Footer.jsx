@@ -1,4 +1,7 @@
+import { useState } from 'react'
 import logo from '../assets/Power4IQ_logo.png'
+import PrivacyPolicyModal from './PrivacyPolicyModal'
+import TermsModal from './TermsModal'
 
 const LinkedInIcon = () => (
   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -31,8 +34,6 @@ const navServices = [
 const navCompany = [
   { label: 'Preguntas frecuentes', href: '#faq' },
   { label: 'Contacto', href: '#final-cta' },
-  { label: 'Política de privacidad', href: '#' },
-  { label: 'Términos y condiciones', href: '#' },
 ]
 
 const socials = [
@@ -42,12 +43,15 @@ const socials = [
 ]
 
 function Footer() {
+  const [showPrivacy, setShowPrivacy] = useState(false)
+  const [showTerms, setShowTerms] = useState(false)
+
   return (
     <footer className="site-footer">
       <div className="container footer-layout">
 
         <div className="footer-brand">
-          <img src={logo} alt="Power4IQ" className="footer-logo" />
+          <img src={logo} alt="Power4IQ" className="footer-logo" width={200} height={64} loading="lazy" />
           <p>
             Carga inteligente para conjuntos, comercios, hoteles y flotas que avanzan hacia la
             movilidad eléctrica con datos, operación y rentabilidad.
@@ -68,42 +72,57 @@ function Footer() {
           </div>
         </div>
 
-        <nav className="footer-col" aria-label="Servicios">
-          <h4>Servicios</h4>
-          <ul>
-            {navServices.map((l) => (
-              <li key={l.label}><a href={l.href}>{l.label}</a></li>
-            ))}
-          </ul>
-        </nav>
+        <div className="footer-cols">
+          <nav className="footer-col" aria-label="Servicios">
+            <h4>Servicios</h4>
+            <ul>
+              {navServices.map((l) => (
+                <li key={l.label}><a href={l.href}>{l.label}</a></li>
+              ))}
+            </ul>
+          </nav>
 
-        <nav className="footer-col" aria-label="Compañía">
-          <h4>Compañía</h4>
-          <ul>
-            {navCompany.map((l) => (
-              <li key={l.label}><a href={l.href}>{l.label}</a></li>
-            ))}
-          </ul>
-        </nav>
+          <nav className="footer-col" aria-label="Compañía">
+            <h4>Compañía</h4>
+            <ul>
+              {navCompany.map((l) => (
+                <li key={l.label}><a href={l.href}>{l.label}</a></li>
+              ))}
+              <li>
+                <button className="footer-legal-btn" onClick={() => setShowPrivacy(true)}>
+                  Política de privacidad
+                </button>
+              </li>
+              <li>
+                <button className="footer-legal-btn" onClick={() => setShowTerms(true)}>
+                  Términos y condiciones
+                </button>
+              </li>
+            </ul>
+          </nav>
 
-        <nav className="footer-col" aria-label="Contacto">
-          <h4>Contacto</h4>
-          <ul>
-            <li><a href="mailto:hola@power4iq.com">hola@power4iq.com</a></li>
-            <li><a href="#">Bogotá · Colombia</a></li>
-            <li><a href="#final-cta">Solicitar demo</a></li>
-          </ul>
-        </nav>
+          <nav className="footer-col footer-col--contact" aria-label="Contacto">
+            <h4>Contacto</h4>
+            <ul>
+              <li><a href="mailto:hola@power4iq.com">hola@power4iq.com</a></li>
+              <li><span>Bogotá · Colombia</span></li>
+              <li><a href="#final-cta" className="footer-demo-link">Solicitar demo</a></li>
+            </ul>
+          </nav>
+        </div>
 
       </div>
 
       <div className="container legal-row">
         <p>© {new Date().getFullYear()} Power4IQ. Todos los derechos reservados.</p>
         <div>
-          <a href="#">Política de privacidad</a>
-          <a href="#">Términos y condiciones</a>
+          <button className="footer-legal-btn" onClick={() => setShowPrivacy(true)}>Política de privacidad</button>
+          <button className="footer-legal-btn" onClick={() => setShowTerms(true)}>Términos y condiciones</button>
         </div>
       </div>
+
+      {showPrivacy && <PrivacyPolicyModal onClose={() => setShowPrivacy(false)} />}
+      {showTerms && <TermsModal onClose={() => setShowTerms(false)} />}
     </footer>
   )
 }

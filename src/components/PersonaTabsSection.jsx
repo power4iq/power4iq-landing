@@ -191,6 +191,7 @@ function PersonaTabsSection() {
               alt=""
               aria-hidden="true"
               className="pq-stage-bg"
+              loading="lazy"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

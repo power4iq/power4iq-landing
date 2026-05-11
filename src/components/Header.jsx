@@ -29,18 +29,20 @@ function Header() {
 
   useEffect(() => {
     const ids = navItems.map((item) => item.href.slice(1))
-    const elements = ids.map((id) => document.getElementById(id)).filter(Boolean)
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.find((e) => e.isIntersecting)
-        if (visible) setActiveSection(visible.target.id)
-      },
-      { rootMargin: '-30% 0px -60% 0px', threshold: 0 }
-    )
+    const updateActive = () => {
+      const trigger = window.innerHeight * 0.35
+      let active = ''
+      for (const id of ids) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= trigger) active = id
+      }
+      setActiveSection(active)
+    }
 
-    elements.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    updateActive()
+    window.addEventListener('scroll', updateActive, { passive: true })
+    return () => window.removeEventListener('scroll', updateActive)
   }, [])
 
   const handleNavClick = (e, href) => {

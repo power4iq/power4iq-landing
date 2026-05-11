@@ -194,6 +194,7 @@ function PortafolioSection() {
                 alt=""
                 aria-hidden="true"
                 className="sv-stage-bg"
+                loading="lazy"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

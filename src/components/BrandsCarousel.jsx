@@ -29,6 +29,9 @@ function BrandPill({ slug, name }) {
         src={`/assets/brands/${slug}.svg`}
         alt={name}
         className="brand-pill-logo"
+        width={48}
+        height={48}
+        loading="lazy"
         draggable={false}
       />
       <span className="brand-pill-name">{name}</span>
