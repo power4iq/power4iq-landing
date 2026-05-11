@@ -98,9 +98,9 @@ function FinalCTASection() {
               <Mail size={15} />
               hola@power4iq.com
             </a>
-            <a href="tel:+573000000000" className="contact-direct-link">
+            <a href="tel:+573008592217" className="contact-direct-link">
               <Phone size={15} />
-              +57 300 000 0000
+              +57 300 859 2217
             </a>
           </div>
 

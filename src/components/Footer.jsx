@@ -38,7 +38,7 @@ const navCompany = [
 const socials = [
   { icon: LinkedInIcon, label: 'LinkedIn', href: 'https://www.linkedin.com/company/116002167/' },
   { icon: InstagramIcon, label: 'Instagram', href: 'https://www.instagram.com/power4iq/' },
-  { icon: WhatsAppIcon, label: 'WhatsApp', href: '#' },
+  { icon: WhatsAppIcon, label: 'WhatsApp', href: 'https://wa.me/573008592217' },
 ]
 
 function Footer() {
