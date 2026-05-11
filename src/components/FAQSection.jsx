@@ -1,0 +1,119 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Plus, HelpCircle } from 'lucide-react'
+
+const faqs = [
+  {
+    q: '¿Necesito subestación o transformador adicional para instalar carga rápida?',
+    a: 'Para residencial AC (7-22 kW) normalmente no — el tablero existente puede absorberlo si tiene capacidad. Para carga DC empresarial o flotas, el EV Ready Study mide la capacidad real disponible, identifica si la subestación tiene reserva y diseña el tablero EV dedicado. En el 80% de los casos no se requiere subestación nueva si la potencia contratada se planifica bien.',
+  },
+  {
+    q: '¿Cuánto tiempo demora el trámite de marcación RETIE?',
+    a: 'RETIE residencial típico: 5-10 días hábiles incluyendo inspección. Para conjuntos o comercios con tablero EV dedicado, la revisión por organismo de inspección (RETIE comercial/industrial) tarda 2-3 semanas. Toda la documentación queda archivada con NIT y nombre del RETIE firmante para tu acta.',
+  },
+  {
+    q: '¿Qué pasa si se cae la luz a media sesión de carga?',
+    a: 'Los cargadores Power4IQ retoman la sesión automáticamente cuando vuelve la energía, si el vehículo sigue conectado. La sesión queda registrada en la consola con el corte detectado, por lo que la facturación cobra solo el kWh efectivamente entregado. Si tienes UPS o respaldo en tu conjunto, podemos integrarlo.',
+  },
+  {
+    q: '¿Cómo se facturan las sesiones a usuarios externos en mi conjunto o comercio?',
+    a: 'Charge Management cobra automáticamente vía app del usuario o tarjeta RFID — soporta tarifas por kWh, por minuto o por sesión fija. Genera reporte mensual de ingresos consolidado en tu cuenta corporativa. No requiere intervención manual del administrador.',
+  },
+  {
+    q: '¿Qué cargadores son compatibles con BYD, MG, Zeekr y demás marcas chinas?',
+    a: 'Todos los cargadores Power4IQ usan conector tipo 2 (Mennekes), el estándar adoptado en Colombia y soportado nativamente por BYD, MG, Zeekr, Chery, GAC. Para VEs con conector tipo 1 (Tesla pre-2023, algunos Leaf) entregamos adaptador certificado. La compatibilidad está validada con cada VE matriculado en Colombia.',
+  },
+  {
+    q: '¿Puedo migrar de un proveedor existente sin perder mi protocolo OCPP?',
+    a: 'Sí. Si tu cargador actual habla OCPP 1.6j o superior, lo migramos a la consola Power4IQ sin cambiar hardware. Sesiones históricas archivadas, balance contable preservado. Migración típica: 24-48 horas, sin interrumpir la operación.',
+  },
+  {
+    q: '¿Cuál es el SLA de respuesta cuando un cargador se cae?',
+    a: 'Con Charge Management activo: detección automática vía consola en menos de 1 min, soporte remoto en menos de 2h, atención en sitio en menos de 24h dentro del área metropolitana de Bogotá, Medellín y Cali (otras ciudades coordinamos). El 80% se resuelve remoto, sin desplazamiento.',
+  },
+  {
+    q: '¿Cómo se balancea la carga con 8 cargadores en un parqueo de solo 60 kW?',
+    a: 'La consola hace load balancing dinámico: redistribuye los 60 kW en tiempo real entre los vehículos activos. 2 cargando = hasta 30 kW c/u; 8 cargando = baja proporcionalmente sin disparar protecciones. Soporta priorización por ruta, horario o usuario premium.',
+  },
+]
+
+function FAQItem({ data, isOpen, onToggle, index }) {
+  return (
+    <motion.div
+      className={`faq-item${isOpen ? ' open' : ''}`}
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.4, ease: 'easeOut', delay: index * 0.04 }}
+    >
+      <button
+        type="button"
+        className="faq-q"
+        onClick={onToggle}
+        aria-expanded={isOpen}
+      >
+        <span className="faq-q-text">{data.q}</span>
+        <span className="faq-q-icon" aria-hidden="true">
+          <Plus size={18} />
+        </span>
+      </button>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            className="faq-a-wrap"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.28, ease: 'easeOut' }}
+          >
+            <p className="faq-a">{data.a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
+function FAQSection() {
+  const [openIdx, setOpenIdx] = useState(0)
+
+  return (
+    <section id="faq" className="section">
+      <div className="container">
+        <div className="section-header center">
+          <span className="eyebrow">
+            <HelpCircle size={11} />
+            Preguntas técnicas frecuentes
+          </span>
+          <h2 className="section-title">
+            Lo que el cliente B2B{' '}
+            <span className="gradient-text">siempre pregunta primero.</span>
+          </h2>
+          <p className="section-subtitle">
+            Respuestas técnicas honestas a las decisiones que más pesan antes de instalar
+            infraestructura EV. Sin marketing, sin medias verdades.
+          </p>
+        </div>
+
+        <div className="faq-list">
+          {faqs.map((f, i) => (
+            <FAQItem
+              key={f.q}
+              data={f}
+              index={i}
+              isOpen={openIdx === i}
+              onToggle={() => setOpenIdx(openIdx === i ? -1 : i)}
+            />
+          ))}
+        </div>
+
+        <p className="faq-footnote">
+          ¿Tu pregunta no está aquí? Escríbenos — los ingenieros de Power4IQ responden directamente
+          decisiones técnicas antes de cualquier cotización.
+        </p>
+      </div>
+    </section>
+  )
+}
+
+export default FAQSection
