@@ -7,6 +7,7 @@ import PlatformConsoleSection from './components/PlatformConsoleSection'
 import FAQSection from './components/FAQSection'
 import FinalCTASection from './components/FinalCTASection'
 import Footer from './components/Footer'
+import WhatsAppFAB from './components/WhatsAppFAB'
 
 function App() {
   const showOverlay =
@@ -25,6 +26,7 @@ function App() {
         <FinalCTASection />
       </main>
       <Footer />
+      <WhatsAppFAB />
 
       {showOverlay ? <div className="design-overlay" /> : null}
     </div>
