@@ -106,7 +106,6 @@ function Footer() {
             <ul>
               <li><a href="mailto:hola@power4iq.com">hola@power4iq.com</a></li>
               <li><span>Bogotá · Colombia</span></li>
-              <li><a href="#final-cta" className="footer-demo-link">Solicitar demo</a></li>
             </ul>
           </nav>
         </div>
