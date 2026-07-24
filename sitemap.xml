@@ -1,9 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Página principal -->
   <url>
     <loc>https://www.power4iq.com/</loc>
-    <lastmod>2026-05-10</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es-CO" href="https://www.power4iq.com/"/>
+    <xhtml:link rel="alternate" hreflang="es"    href="https://www.power4iq.com/"/>
   </url>
+
+  <!-- Sección: Por qué Power4IQ -->
+  <url>
+    <loc>https://www.power4iq.com/#pilares</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sección: Servicios / Portafolio -->
+  <url>
+    <loc>https://www.power4iq.com/#portafolio</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Sección: Power4IQ Ready – Diagnóstico de cargabilidad -->
+  <url>
+    <loc>https://www.power4iq.com/#portafolio</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Sección: Plataforma / Power4IQ Control -->
+  <url>
+    <loc>https://www.power4iq.com/#platform</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Sección: FAQ -->
+  <url>
+    <loc>https://www.power4iq.com/#faq</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Sección: Contacto / CTA -->
+  <url>
+    <loc>https://www.power4iq.com/#final-cta</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
